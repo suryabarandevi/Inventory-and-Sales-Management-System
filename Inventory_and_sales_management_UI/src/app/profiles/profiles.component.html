@@ -1,0 +1,109 @@
+<div class="profiles-container" *ngIf="!EditMode">
+  <h1>Manage Profiles</h1>
+
+  <form [formGroup]="profileForm" (ngSubmit)="createProfile()">
+    <div>
+      <label for="role">Role:</label>
+      <select id="role" formControlName="role">
+        <option value="" disabled>Select a role</option>
+        <option *ngFor="let role of roleType" [value]="role">{{ role }}</option>
+      </select>
+      <div class="error-message" *ngIf="profileForm.get('role')?.touched && profileForm.get('role')?.invalid">
+        <small *ngIf="profileForm.get('role')?.hasError('required')">Role is required.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="name">Name:</label>
+      <input id="name" type="text" formControlName="name" placeholder="Enter name">
+      <div class="error-message" *ngIf="profileForm.get('name')?.touched && profileForm.get('name')?.invalid">
+        <small *ngIf="profileForm.get('name')?.hasError('required')">Name is required.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="email">Email:</label>
+      <input id="email" type="email" formControlName="email" placeholder="Enter email">
+      <div class="error-message" *ngIf="profileForm.get('email')?.touched && profileForm.get('email')?.invalid">
+        <small *ngIf="profileForm.get('email')?.hasError('required')">Email is required.</small>
+        <small *ngIf="profileForm.get('email')?.hasError('email')">Invalid email format.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="phone">Phone:</label>
+      <input id="phone" type="text" formControlName="phone" placeholder="Enter phone number">
+      <div class="error-message" *ngIf="profileForm.get('phone')?.touched && profileForm.get('phone')?.invalid">
+        <small *ngIf="profileForm.get('phone')?.hasError('required')">Phone number is required.</small>
+        <small *ngIf="profileForm.get('phone')?.hasError('pattern')">Phone number must be 10 digits.</small>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="!profileForm.valid">Create Profile</button>
+  </form>
+
+  <!-- Display Profiles List -->
+  <div class="profiles-list" *ngIf="existingProfiles && existingProfiles.length">
+    <h2>Existing Profiles</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let profile of existingProfiles">
+          <td>{{ profile.name }}</td>
+          <td>{{ profile.email }}</td>
+          <td>{{ profile.phone }}</td>
+          <td>
+            <button (click)="Edit(profile.id, profile.name, profile.email, profile.phone)">Edit</button>
+          </td>
+          <td>
+            <button (click)="Delete(profile.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- No Profiles Message -->
+  <div *ngIf="!existingProfiles.length">
+    <p>No profiles available. Start by creating a new profile!</p>
+  </div>
+</div>
+
+<div *ngIf="EditMode">
+  <h2>Edit Profile</h2>
+  <form [formGroup]="profileForm" (ngSubmit)="submitForm()">
+    <div>
+      <label for="name">Name:</label>
+      <input id="name" type="text" formControlName="name">
+      <div class="error-message" *ngIf="profileForm.get('name')?.touched && profileForm.get('name')?.invalid">
+        <small *ngIf="profileForm.get('name')?.hasError('required')">Name is required.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="email">Email (Uneditable):</label>
+      <input id="email" type="email" formControlName="email" [readonly]="true">
+    </div>
+
+    <div>
+      <label for="phone">Phone:</label>
+      <input id="phone" type="text" formControlName="phone" placeholder="Enter phone number">
+      <div class="error-message" *ngIf="profileForm.get('phone')?.touched && profileForm.get('phone')?.invalid">
+        <small *ngIf="profileForm.get('phone')?.hasError('required')">Phone number is required.</small>
+        <small *ngIf="profileForm.get('phone')?.hasError('pattern')">Phone number must be 10 digits.</small>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="!profileForm.valid">Save Changes</button>
+    <br>
+    <button type="button" (click)="onCancel()">Cancel</button>
+  </form>
+</div>

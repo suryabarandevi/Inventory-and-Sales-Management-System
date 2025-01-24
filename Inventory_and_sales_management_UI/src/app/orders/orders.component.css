@@ -1,0 +1,198 @@
+/* orders.component.css */
+.products-section, .order-section, .order-history-section {
+  margin: 2rem 0;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.products-section h2, .order-section h2, .order-history-section h2 {
+  color: #2d3748;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.search-bar {
+  margin-bottom: 1.5rem;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #2d3748;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #3182ce;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+}
+
+.search-input::placeholder {
+  color: #a0aec0;
+}
+
+.product-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product-card button {
+  background: #3182ce;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.product-card button:hover {
+  background: #2c5282;
+  box-shadow: 0 4px 6px rgba(44, 82, 130, 0.3);
+}
+
+.order-section p, .order-history-section p {
+  font-size: 1rem;
+  color: #4a5568;
+  margin-bottom: 0.75rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+thead tr {
+  background: #f1f5f9;
+  color: #2d3748;
+}
+
+th, td {
+  text-align: left;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+}
+
+th {
+  font-weight: 600;
+}
+
+tbody tr:nth-child(even) {
+  background: #f7fafc;
+}
+
+tbody tr:hover {
+  background: #e2e8f0;
+}
+
+.create-order-btn {
+  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.create-order-btn:hover {
+  background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%);
+  box-shadow: 0 6px 12px rgba(50, 120, 200, 0.3);
+}
+
+button {
+  background: #e2e8f0;
+}
+
+.deleteOrder{
+  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+  color: white;
+  border: none;
+  padding: 0.2rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pagination-controls .ngx-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 0;
+  background: linear-gradient(135deg, #f0f4f8 0%, #f9fafb 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pagination-controls .ngx-pagination li {
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+.pagination-controls .ngx-pagination a {
+  padding: 10px 16px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  color: #4a5568;
+  text-decoration: none;
+  font-weight: 600;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.pagination-controls .ngx-pagination a:hover {
+  border-color: #4299e1;
+  color: #4299e1;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(66, 153, 225, 0.2);
+}
+
+.pagination-controls .ngx-pagination .current {
+  background-color: #4299e1;
+  color: white;
+  font-weight: bold;
+  border-color: #4299e1;
+  transform: scale(1.05);
+  box-shadow: 0 6px 8px rgba(66, 153, 225, 0.3);
+}
+
+.pagination-controls .ngx-pagination li:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .pagination-controls .ngx-pagination {
+    gap: 5px;
+  }
+  
+  .pagination-controls .ngx-pagination a {
+    padding: 8px 12px;
+    font-size: 0.9em;
+  }
+}

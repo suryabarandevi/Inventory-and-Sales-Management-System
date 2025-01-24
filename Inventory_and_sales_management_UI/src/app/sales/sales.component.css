@@ -1,0 +1,22 @@
+/* .sales-container, .inventory-container {
+    margin: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+  }
+  
+  canvas {
+    max-width: 100%;
+    height: 400px;
+  }
+   */
+
+   /* canvas {
+    width: 100%;
+    height: 400px; /* or whatever height you prefer */
+  /* } */ */
+
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }

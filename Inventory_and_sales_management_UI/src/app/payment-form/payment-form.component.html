@@ -1,0 +1,27 @@
+<form [formGroup]="paymentForm" (ngSubmit)="onSubmit()" class="payment-form">
+    <div class="form-group">
+      <label for="orderId">Order ID</label>
+      <input id="orderId" formControlName="orderId" type="text" placeholder="Enter Order ID" />
+      <div *ngIf="paymentForm.get('orderId')?.invalid && paymentForm.get('orderId')?.touched" class="error">Valid Order ID is required.</div>
+    </div>
+  
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input id="amount" formControlName="amount" type="text" placeholder="Enter Amount" />
+      <div *ngIf="paymentForm.get('amount')?.invalid && paymentForm.get('amount')?.touched" class="error">Valid amount is required.</div>
+    </div>
+  
+    <div class="form-group">
+      <label for="cardNumber">Card Number</label>
+      <input id="cardNumber" formControlName="cardNumber" type="text" placeholder="Enter 16-digit Card Number" />
+      <div *ngIf="paymentForm.get('cardNumber')?.invalid && paymentForm.get('cardNumber')?.touched" class="error">Valid 16-digit card number is required.</div>
+    </div>
+  
+    <div class="form-group">
+      <label for="cvv">CVV</label>
+      <input id="cvv" formControlName="cvv" type="password" placeholder="Enter CVV" />
+      <div *ngIf="paymentForm.get('cvv')?.invalid && paymentForm.get('cvv')?.touched" class="error">Valid 3-digit CVV is required.</div>
+    </div>
+  
+    <button type="submit" [disabled]="paymentForm.invalid">Submit Payment</button>
+  </form>

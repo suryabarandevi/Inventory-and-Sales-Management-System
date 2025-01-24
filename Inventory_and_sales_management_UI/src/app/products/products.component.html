@@ -1,0 +1,139 @@
+<div class="profiles-container" *ngIf="!EditMode">
+  <h1>Manage Products</h1>
+
+  <form [formGroup]="categoryForm" (ngSubmit)="createCategory()">
+    <div>
+      <label for="categoryName">Create Category:</label>
+      <input id="categoryName" type="text" formControlName="categoryName" placeholder="Enter category name">
+      <div class="error-message" *ngIf="categoryForm.get('categoryName')?.touched && categoryForm.get('categoryName')?.invalid">
+        <small *ngIf="categoryForm.get('categoryName')?.hasError('required')">Category name is required.</small>
+      </div>
+    </div>
+    <button type="submit" [disabled]="!categoryForm.valid">Add Category</button>
+  </form>
+
+  <form [formGroup]="productForm" (ngSubmit)="createProduct()">
+    <div>
+      <label for="category_Id">Category:</label>
+      <select id="category_Id" formControlName="category_Id">
+        <option value="" disabled>Select a category</option>
+        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+      </select>
+      <div class="error-message" *ngIf="productForm.get('category_Id')?.touched && productForm.get('category_Id')?.invalid">
+        <small *ngIf="productForm.get('category_Id')?.hasError('required')">Please select a category.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="name">Product Name:</label>
+      <input id="name" type="text" formControlName="name" placeholder="Enter product name">
+      <div class="error-message" *ngIf="productForm.get('name')?.touched && productForm.get('name')?.invalid">
+        <small *ngIf="productForm.get('name')?.hasError('required')">Product name is required.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="quantity">Quantity:</label>
+      <input id="quantity" type="text" formControlName="quantity" placeholder="Enter quantity">
+      <div class="error-message" *ngIf="productForm.get('quantity')?.touched && productForm.get('quantity')?.invalid">
+        <small *ngIf="productForm.get('quantity')?.hasError('required')">Quantity is required.</small>
+        <small *ngIf="productForm.get('quantity')?.hasError('min')">Quantity must be at least 1.</small>
+        <small *ngIf="productForm.get('quantity')?.hasError('pattern')">Quantity must be a valid number.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="price">Price:</label>
+      <input id="price" type="text" formControlName="price" placeholder="Enter price">
+      <div class="error-message" *ngIf="productForm.get('price')?.touched && productForm.get('price')?.invalid">
+        <small *ngIf="productForm.get('price')?.hasError('required')">Price is required.</small>
+        <small *ngIf="productForm.get('price')?.hasError('min')">Price must be at least 1.</small>
+        <small *ngIf="productForm.get('price')?.hasError('pattern')">Price must be a valid number.</small>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="!productForm.valid">Create Product</button>
+  </form>
+
+  <div class="profiles-list" *ngIf="existingProducts && existingProducts.length">
+    <h2>Existing Products</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of existingProducts | paginate: { itemsPerPage: 5, currentPage: productPage }">
+          <td>{{ product.name }}</td>
+          <td>{{ product.quantity }}</td>
+          <td>{{ product.price }}</td>
+          <td><button (click)="Edit(product.id, product.name, product.quantity, product.price, product.category_Id)">Edit</button></td>
+          <td><button (click)="Delete(product.id)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="!existingProducts.length">
+    <p>No products available. Start by creating a new product!</p>
+  </div>
+  <pagination-controls 
+  (pageChange)="productPage = $event" 
+  [autoHide]="true"
+  previousLabel="« Previous"
+  nextLabel="Next »">
+</pagination-controls>
+</div>
+
+ 
+  
+   <div *ngIf="EditMode">
+    <h2>Edit Product</h2>
+    <form [formGroup]="productForm" (ngSubmit)="submitForm()">
+      <div>
+        <label for="category_Id">Category:</label>
+        <select id="category_Id" formControlName="category_Id">
+          <option value="" disabled>Select a category</option>
+          <option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}
+          </option>
+        </select>
+        <div class="error-message" *ngIf="productForm.get('category_Id')?.touched && productForm.get('category_Id')?.invalid">
+          <small *ngIf="productForm.get('category_Id')?.hasError('required')">Please select a category.</small>
+        </div>
+      </div>
+      <div>
+        <label for="name">Product Name:</label>
+        <input id="name" type="text" formControlName="name" />
+        <div class="error-message" *ngIf="productForm.get('name')?.touched && productForm.get('name')?.invalid">
+          <small *ngIf="productForm.get('name')?.hasError('required')">Product name is required.</small>
+        </div>
+      </div>
+      <div>
+        <label for="quantity">Quantity:</label>
+        <input id="quantity" type="text" formControlName="quantity" />
+        <div class="error-message" *ngIf="productForm.get('quantity')?.touched && productForm.get('quantity')?.invalid">
+          <small *ngIf="productForm.get('quantity')?.hasError('required')">Quantity is required.</small>
+          <small *ngIf="productForm.get('quantity')?.hasError('min')">Quantity must be at least 1.</small>
+          <small *ngIf="productForm.get('quantity')?.hasError('pattern')">Quantity must be a valid number.</small>
+        </div>
+      </div>
+      <div>
+        <label for="price">Price:</label>
+        <input id="price" type="text" formControlName="price" />
+        <div class="error-message" *ngIf="productForm.get('price')?.touched && productForm.get('price')?.invalid">
+          <small *ngIf="productForm.get('price')?.hasError('required')">Price is required.</small>
+          <small *ngIf="productForm.get('price')?.hasError('min')">Price cannot be negative.</small>
+          <small *ngIf="productForm.get('price')?.hasError('pattern')">Price must be a valid number.</small>
+        </div>
+      </div>
+      <button type="submit" [disabled]="!productForm.valid">Save</button>
+    
+      <button type="button" (click)="onCancel()">Cancel</button>
+    </form>
+  </div>
+  

@@ -1,0 +1,146 @@
+.company-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.company-form h2 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 0.75rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Validation States */
+.form-control.ng-touched.ng-invalid {
+  border-color: #dc3545;
+}
+
+.form-control.ng-touched.ng-valid {
+  border-color: #28a745;
+}
+
+/* Error Messages */
+.form-group div:not(.form-control) {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  animation: fadeIn 0.3s ease-in;
+}
+
+/* Submit Button */
+.btn {
+  display: inline-block;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 4px;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.btn-primary:disabled {
+  background-color: #ccc;
+  border-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+/* Animation for error messages */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .company-form {
+      margin: 1rem;
+      padding: 1.5rem;
+  }
+
+  .btn {
+      width: 100%;
+  }
+}
+
+/* Optional: Add icons for validation states */
+.form-group {
+  position: relative;
+}
+
+.form-control.ng-touched.ng-valid + label::after {
+  content: '✓';
+  color: #28a745;
+  position: absolute;
+  right: 10px;
+  top: 35px;
+}
+
+.form-control.ng-touched.ng-invalid + label::after {
+  content: '✗';
+  color: #dc3545;
+  position: absolute;
+  right: 10px;
+  top: 35px;
+}

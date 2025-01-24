@@ -1,0 +1,121 @@
+
+<div class="dashboard-container">
+  <div class="header">
+    <!-- <h1>Customer Management</h1> -->
+    <h1>Customers</h1>
+    <button class="add-customer-btn" (click)="openForm()">Add New Customer</button>
+  </div>
+
+  <div class="content-grid">
+    <div class="customers-section">
+      
+      <div class="customers-grid">
+        <div class="customer-card" *ngFor="let customer of existingCustomers | paginate: { itemsPerPage: 5, currentPage: customersPage }">
+          <div class="customer-info">
+            <h3>{{ customer.firstName }} {{ customer.lastName }}</h3>
+            <p class="email">{{ customer.email }}</p>
+            <p class="location">{{ customer.city }}, {{ customer.state }}</p>
+
+            <button class="submit-btn" (click)="editCustomer(customer)">Edit</button>
+          
+            <button class="submit-btn" (click)="deleteCustomer(customer.id)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pagination-controls 
+    (pageChange)="customersPage = $event" 
+    [autoHide]="true"
+    previousLabel="« Previous"
+    nextLabel="Next »">
+  </pagination-controls>
+  </div>
+
+  <div class="modal" *ngIf="isFormOpen">
+    <div class="modal-content">
+      <h2>{{ isEditMode ? 'Edit Customer' : 'Add New Customer' }}</h2>
+      <form [formGroup]="customerForm" (ngSubmit)="saveCustomer()">
+        <div class="form-group">
+          <input
+            type="text"
+            formControlName="firstName"
+            placeholder="First Name"
+            [class.invalid]="customerForm.get('firstName')?.invalid && customerForm.get('firstName')?.touched"
+            required
+          />
+          <input
+            type="text"
+            formControlName="lastName"
+            placeholder="Last Name"
+            [class.invalid]="customerForm.get('lastName')?.invalid && customerForm.get('lastName')?.touched"
+            required
+          />
+          <input
+            type="email"
+            formControlName="email"
+            placeholder="Email"
+            [class.invalid]="customerForm.get('email')?.invalid && customerForm.get('email')?.touched"
+            required
+          />
+          <input
+            type="text"
+            formControlName="address"
+            placeholder="Address"
+            [class.invalid]="customerForm.get('address')?.invalid && customerForm.get('address')?.touched"
+            required
+          />
+          <input
+            type="text"
+            formControlName="city"
+            placeholder="City"
+            [class.invalid]="customerForm.get('city')?.invalid && customerForm.get('city')?.touched"
+            required
+          />
+          <input
+            type="text"
+            formControlName="state"
+            placeholder="State"
+            [class.invalid]="customerForm.get('state')?.invalid && customerForm.get('state')?.touched"
+            required
+          />
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="submit-btn" [disabled]="customerForm.invalid">
+            {{ isEditMode ? 'Update Customer' : 'Add Customer' }}
+          </button>
+          <button type="button" class="cancel-btn" (click)="closeForm()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- <div class="orders-card">
+    <h2>Recent Orders</h2>
+    <div class="table-container">
+      <table class="orders-table">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orderMappings">
+            <td>{{ order.orderId }}</td>
+            <td>{{ order.customerName }}</td>
+            <td>₹{{ order.productPrice }}</td>
+            <td>
+              <span class="status-badge" [ngClass]="order.status.toLowerCase()">
+                {{ order.status }}
+              </span>
+            </td>
+            <td>{{ order.date | date: 'short' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div> -->
+  
+</div>

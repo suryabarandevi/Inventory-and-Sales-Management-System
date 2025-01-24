@@ -1,0 +1,57 @@
+<div class="company-form">
+    <h2>{{ isEditMode ? 'Edit Company' : 'Add Company' }} Details</h2>
+  
+    <form [formGroup]="companyForm" (ngSubmit)="saveCompany()">
+      <div class="form-group">
+        <label for="name">Company Name</label>
+        <input id="name" type="text" formControlName="name" class="form-control" />
+        <div *ngIf="companyForm.get('name')?.invalid && companyForm.get('name')?.touched">
+          Company name is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input id="address" type="text" formControlName="address" class="form-control" />
+        <div *ngIf="companyForm.get('address')?.invalid && companyForm.get('address')?.touched">
+          Address is required.
+        </div>
+      </div>
+  
+      <!-- <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" class="form-control" />
+        <div *ngIf="companyForm.get('email')?.invalid && companyForm.get('email')?.touched">
+          Valid email is required.
+        </div>
+      </div>
+   -->
+   <div class="form-group">
+    <label for="email">Email</label>
+    <input id="email" type="email" formControlName="email" class="form-control" [readonly]="true" />
+    <div *ngIf="companyForm.get('email')?.invalid && companyForm.get('email')?.touched">
+      Valid email is required.
+    </div>
+  </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input id="phone" type="text" formControlName="phone" class="form-control" />
+        <div *ngIf="companyForm.get('phone')?.invalid && companyForm.get('phone')?.touched">
+          Phone number must be 10 digits.
+        </div>
+      </div>
+  
+      <!-- <div class="form-group">
+        <label for="taxDetails">Tax Details</label>
+        <input id="taxDetails" type="text" formControlName="taxDetails" class="form-control" />
+        <div *ngIf="companyForm.get('taxDetails')?.invalid && companyForm.get('taxDetails')?.touched">
+          Tax details are required.
+        </div>
+      </div> -->
+  
+      <button type="submit" [disabled]="companyForm.invalid" class="btn btn-primary">
+        {{ isEditMode ? 'Update' : 'Save' }}
+      </button>
+    </form>
+  </div>
+  

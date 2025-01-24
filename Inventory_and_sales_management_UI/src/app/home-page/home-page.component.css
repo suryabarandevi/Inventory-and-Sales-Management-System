@@ -1,0 +1,48 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+  text-align: center;
+}
+
+.home h1 {
+  font-size: 2.5rem;
+  color: #2d3748;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.home button {
+  background: #3182ce;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.home button:hover {
+  background: #2c5282;
+  box-shadow: 0 6px 12px rgba(44, 82, 130, 0.3);
+}
+
+.home button:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+  .home h1 {
+    font-size: 2rem;
+  }
+
+  .home button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1.2rem;
+  }
+}

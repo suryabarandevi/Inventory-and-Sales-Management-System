@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> OHOZ</title>
+  <link rel="stylesheet" href="manager-dashboard.component.css">
+</head>
+ <body> 
+
+ 
+  <header>
+    <h1>Manager Dashboard</h1>
+    <nav>
+      <button (click)="logout()">Logout</button>
+    </nav>
+  </header>
+
+  <div class="dashboard">
+   
+    <div class="sidebar">
+      <a routerLink="/manager-dashboard/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/manager-dashboard/products" routerLinkActive="active">Products</a>
+      <a routerLink="/manager-dashboard/orders" routerLinkActive="active">Orders</a>
+      <a routerLink="/manager-dashboard/orders-mapping" routerLinkActive="active">Map Orders</a>
+      <a routerLink="/manager-dashboard/sales" routerLinkActive="active">Sales</a>
+      <!-- <a routerLink="/manager-dashboard/about" routerLinkActive="active">About</a> -->
+      <!-- <a routerLink="/admin-dashboard/profiles" routerLinkActive="active">Profiles</a> -->
+      <a routerLink="/manager-dashboard/customers" routerLinkActive="active">Customers</a>
+      <!-- <a routerLink="/manager-dashboard/profile" routerLinkActive="active">Profile</a> -->
+    </div>
+
+  
+    <div class="content">
+     <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<div class="products-section">
+  <h2>Available Products</h2>
+  <div class="search-bar">
+    <input 
+      type="text" 
+      [(ngModel)]="productSearch" 
+      (ngModelChange)="filterProducts()"
+      placeholder="Search products by name..."
+      class="search-input"
+    />
+  </div>
+  <div *ngFor="let product of filteredProducts | paginate: { itemsPerPage: 5, currentPage: productPage }" class="product-card">
+    <p><strong>{{ product.name }}</strong></p>
+    <p>Price: ₹{{ product.price }}</p>
+    <button (click)="addToOrder(product)">Add to Order</button>
+
+  </div>
+  <pagination-controls 
+  (pageChange)="productPage = $event" 
+  [autoHide]="true"
+  previousLabel="« Previous"
+  nextLabel="Next »">
+</pagination-controls>
+  
+</div>
+
+
+<hr />
+
+<div class="order-section">
+  <h2>Order Details</h2>
+  <p><strong>Status:</strong> {{ orderStatus }}</p>
+  <p><strong>Date:</strong> {{ orderDate | date: 'short' }}</p>
+
+  <div *ngIf="orderItems.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of orderItems">
+          <td>{{ item.name }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.total }}</td>
+          <td>
+            <button (click)="incrementQuantity(item)">+</button>
+            <button (click)="decrementQuantity(item)">-</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p><strong>Total Price:</strong> {{ getTotalPrice() }}</p>
+  </div>
+  <div *ngIf="orderItems.length === 0">
+    <p>No items in the order yet.</p>
+  </div>
+
+  <button  class="create-order-btn" (click)="createOrder()"  [disabled]="orderItems.length === 0">Create Order</button>
+</div>
+
+<div class="order-history-section">
+  <h2>Order History</h2>
+  <div class="search-bar">
+    <input 
+      type="text" 
+      [(ngModel)]="orderSearch" 
+      (ngModelChange)="filterOrders()"
+      placeholder="Search orders by ID..."
+      class="search-input"
+    />
+  </div>
+  
+  <div *ngIf="filteredOrders.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Product Name</th>
+          <!-- <th>Category</th> -->
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let order of filteredOrders | paginate: { itemsPerPage: 6, currentPage: currentPage }">
+          <ng-container *ngFor="let product of order.product; let i = index">
+            <tr>
+              <td *ngIf="i === 0" [attr.rowspan]="order.product.length">{{ order.orderId }}</td>
+              <td>{{ product.name }}</td>
+              <!-- <td>{{ product.category_Id }}</td> -->
+              <td>₹{{ product.price }}</td>
+              <td>{{ product.quantity }}</td>
+              <td *ngIf="i === 0" [attr.rowspan]="order.product.length">₹{{ order.productPrice }}</td>
+              <td *ngIf="i === 0" [attr.rowspan]="order.product.length">{{ order.status }}</td>
+              <td *ngIf="i === 0" [attr.rowspan]="order.product.length">{{ order.date | date: 'short' }}</td>
+              <td *ngIf="i === 0" [attr.rowspan]="order.product.length">
+                <select [(ngModel)]="order.status" (change)="updateStatus(order.orderId, order.status)">
+                  <option *ngFor="let status of orderStatuses" [value]="status">{{ status }}</option>
+                </select>
+                <br>
+                <br>
+                <button (click)="delete(order.orderId)" class="deleteOrder">Delete</button>
+              </td>
+            </tr>
+          </ng-container>
+        </ng-container>
+      </tbody>
+    </table>
+    <pagination-controls 
+    (pageChange)="currentPage = $event" 
+    [autoHide]="true"
+    previousLabel="« Previous"
+    nextLabel="Next »"
+    class="pagination-controls">
+  </pagination-controls>
+  </div>
+ 
+  
+  <div *ngIf="filteredOrders.length === 0">
+    <p>No orders found.</p>
+  </div>
+</div>
+
+
+
+  
+

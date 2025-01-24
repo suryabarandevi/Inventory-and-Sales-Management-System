@@ -1,0 +1,161 @@
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #f6f8fb 0%, #f1f4f8 100%);
+}
+
+.profiles-container {
+  padding: 2rem;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1a365d;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(120deg, #2c5282, #4299e1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+button {
+  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 0.5%;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(66, 153, 225, 0.2);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%);
+  box-shadow: 0 6px 8px rgba(66, 153, 225, 0.3);
+}
+
+button:disabled {
+  background: #e2e8f0;
+  color: #a0aec0;
+  cursor: not-allowed;
+}
+
+form {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+input, select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #f8fafc;
+  transition: border-color 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+input:focus, select:focus {
+  border-color: #4299e1;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(66, 153, 225, 0.15);
+}
+
+
+.profiles-list {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.profiles-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.profiles-list th, .profiles-list td {
+  padding: 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.profiles-list th {
+  color: #2d3748;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.profiles-list td {
+  color: #4a5568;
+  font-size: 0.95rem;
+}
+
+.profiles-list p {
+  font-size: 1rem;
+  color: #718096;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+
+.profiles-list button {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.profiles-list button:hover {
+  transform: translateY(-1px);
+}
+
+.profiles-list button:disabled {
+  background: #f7fafc;
+  color: #a0aec0;
+  cursor: not-allowed;
+}
+
+.edit-mode-container {
+  padding: 2rem;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.edit-mode-container h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+}
+
+.error-message small {
+  color: red;
+  font-size: 15px;
+
+}
+

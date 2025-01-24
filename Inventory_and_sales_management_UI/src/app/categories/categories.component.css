@@ -1,0 +1,35 @@
+.categories-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .category-box {
+    width: 200px;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #f9f9f9;
+    transition: transform 0.2s;
+  }
+  
+  .category-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .category-box h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .category-box p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+  }
+  

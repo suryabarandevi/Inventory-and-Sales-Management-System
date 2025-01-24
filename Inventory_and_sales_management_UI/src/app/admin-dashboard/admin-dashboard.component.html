@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="admin-dashboard.component.css">
+</head>
+ <body> 
+
+  <header>
+    <button class="menu-toggle" (click)="toggleSidebar()">
+      <span class="menu-icon"></span>
+    </button>
+    <h1>Admin Dashboard</h1>
+    <nav>
+      <button (click)="logout()">Logout</button>
+    </nav>
+  </header>
+  <!-- <header>
+    <h1>Admin Dashboard</h1>
+    <nav>
+      <button (click)="logout()">Logout</button>
+    </nav>
+  </header> -->
+
+
+  <div class="dashboard">
+  
+    <div class="sidebar">
+      <a routerLink="/admin-dashboard/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/admin-dashboard/products" routerLinkActive="active">Products</a>
+      <a routerLink="/admin-dashboard/orders" routerLinkActive="active">Orders</a>
+      <a routerLink="/admin-dashboard/orders-mapping" routerLinkActive="active">Map Orders</a>
+      <a routerLink="/admin-dashboard/sales" routerLinkActive="active">Sales</a>
+      <a routerLink="/admin-dashboard/about" routerLinkActive="active">About</a>
+      <a routerLink="/admin-dashboard/profiles" routerLinkActive="active">Profiles</a>
+      <a routerLink="/admin-dashboard/customers" routerLinkActive="active">Customers</a>
+    </div>
+
+    <div class="content">
+     <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</body>
+</html>
